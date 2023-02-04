@@ -1,21 +1,21 @@
 from flask import Flask, render_template
-import psycopg2
-conn = psycopg2.connect(dbname='docker', user='docker', password='docker', host='localhost')
+from flask_sqlalchemy import SQLAlchemy
 
-def test_db():
-	cursor = conn.cursor()
-	cursor.execute("SELECT * FROM accounts")
-	s = ''
-	for i in cursor:
-		s += str(i)
-	cursor.close()
-	return s
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://docker:docker@localhost/docker'
+db =SQLAlchemy(app)
 
-@app.route("/db/")
-def db_rest():
-	return test_db()
+class Users(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(100), unique=True)
+    password = db.Column(db.String(500), nullable=True)
+    name = db.Column(db.String(100), nullable=True)
+    
+    def __repr__(self):
+        return f"<users {self.id, self.name}"
+
+
 @app.route("/")
 def test():
     return render_template("index.html")
