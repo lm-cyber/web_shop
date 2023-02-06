@@ -1,5 +1,5 @@
 import json
-import hashlib
+from werkzeug.security import generate_password_hash, check_password_hash 
 import sys
 
 
@@ -29,9 +29,7 @@ class AdminDeAndSerializing():
 
     @staticmethod
     def setUp(name: str, password: str):
-        hasher = hashlib.sha256()
-        hasher.update(password.encode())
-        hash_pass = str(hasher.hexdigest())
+        hash_pass = str(generate_password_hash(password))
         admin = AdminDeAndSerializing(name,hash_pass)
         admin.write()
 

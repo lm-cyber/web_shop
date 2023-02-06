@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8"/>
+{% extends 'layout.html' %}
 
-    <script defer src="{{url_for('static', filename='test.js')}}"></script>
-    <title>test</title>
-</head>
-<body>
-    <div id="root">
-    </div>
-</body>
-</html>
+{% block content %}
+<ul>
+{% for u in list %}
+<li><p>id: {{u.id}}, email: {{u.email}}, name: {{u.name}}</p>
+</li>
+{% endfor %}
+</ul>
+{% endblock %}
+

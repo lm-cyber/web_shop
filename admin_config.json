@@ -1,4 +1,4 @@
 {
-    "name": "test1231",
-    "password": "04c943681d38541d6cf8c4f72eb9fb823c1ab1a36d4022a200e0222f8861af34"
+    "name": "test",
+    "password": "pbkdf2:sha256:260000$Huq08p0Ij1HKYkiH$34e77dd2a29d5af2a0ec15721c77346f9e72aaecde6c76eb145ca77dc564aea8"
 }
