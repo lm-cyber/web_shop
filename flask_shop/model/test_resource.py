@@ -2,13 +2,18 @@
 
 from flask_restful import Resource
 
-from .Users import Users
-class Users_(Resource):
-    def get(self):
-        info = Users.query.all()
-        s = ""
-        for i in info:
-            s+= str(i.id) + " name " + str(i.name)
+from .Products import Product
 
-        return { "data": s }
+class Product_(Resource):
+    def get(self):
+        info = Product.query.all()
+        data = {}
+        for i in info:
+            s = str(i.id) + " name " + str(i.title)
+            d = str(i.description)
+            data[i.id] = (s,d)
+
+        return { "data": data }
+    def post(self):
+        pass
 
