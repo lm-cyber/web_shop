@@ -19,6 +19,10 @@ class Users(db.Model):
         return f"<users {self.id, self.name}"
 
 
+class Product(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    type = 
+
 
 @app.route("/")
 def index():
