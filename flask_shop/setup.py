@@ -1,54 +1,48 @@
-
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask import render_template, request, redirect, session, url_for
-
-
+from flask_restful import Api
+from flask_shop.model.db import app
+api = Api(app)
 
 
-from flask_shop.model.Users import Users
-from flask_shop.model.db import db, app
-
-
-@app.route("/")
-def index():
-    info = []
-    try:
-        info = Users.query.all()
-        print(info)
-    except:
-        print("Ошибка чтения из БД")
-
-    return "ok"
-    # return render_template("../../index.html", title="Главная", list=info)
-
-
-@app.route("/register", methods=("POST", "GET"))
-def register():
-    if request.method == "POST":
-        try:
-            hash = generate_password_hash(request.form['psw'])
-            u = Users(email=request.form['email'], password=hash, name=request.form['name'])
-            db.session.add(u)
-            db.session.flush()
-            db.session.commit()
-        except:
-            db.session.rollback()
-            print("Ошибка добавления в БД")
-
-        return redirect(url_for('index'))
-
-    return render_template("register.html", title="Регистрация")
-
-
-
-@app.route("/db/")
-def db_():
-    try:
-        db.create_all()
-        db.session.flush()
-        return "ок"
-    except:
-        return "bad "
+# @app.route("/")
+# def index():
+#     info = []
+#     try:
+#         info = Users.query.all()
+#         print(info)
+#     except:
+#         print("Ошибка чтения из БД")
+#
+#     return "ok"
+#     # return render_template("../../index.html", title="Главная", list=info)
+#
+#
+# @app.route("/register", methods=("POST", "GET"))
+# def register():
+#     if request.method == "POST":
+#         try:
+#             hash = generate_password_hash(request.form['psw'])
+#             u = Users(email=request.form['email'], password=hash, name=request.form['name'])
+#             db.session.add(u)
+#             db.session.flush()
+#             db.session.commit()
+#         except:
+#             db.session.rollback()
+#             print("Ошибка добавления в БД")
+#
+#         return redirect(url_for('index'))
+#
+#     return render_template("register.html", title="Регистрация")
+#
+#
+#
+# @app.route("/db/")
+# def db_():
+#     try:
+#         db.create_all()
+#         db.session.flush()
+#         return "ок"
+#     except:
+#         return "bad "
 
 
 
