@@ -22,10 +22,14 @@ class Controler_Product(Resource):
             db.session.add(p)
             db.session.flush()
             db.session.commit()
-            return {"result": "problem"}
-        except:
+            return {"result": "ok"}
+        except :
             db.session.rollback()
-            return {"result": "problem"}
+            return {"result": "problem",
+                    "title" : request.form['title'],
+                    "description" : request.form['description'],
+                    "type" :request.form['type'],
+                    }
 
 
 

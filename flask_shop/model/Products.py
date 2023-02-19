@@ -3,6 +3,21 @@ from flask_shop.model.db import db
 
 
 
+class Type(db.Model):
+    __tablename__ = 'type'
+    name = db.Column(db.String(100), primary_key=True)
+
+
+    def __str__(self):
+        return self.name
+
+
+    def __iter__(self):
+        return iter(self.name)
+
+
+    def __repr__(self):
+        return f" {self.name}"
 
 
 class Product(db.Model):
@@ -20,24 +35,9 @@ class Product(db.Model):
         return iter(self.id)
     
     def __repr__(self):
-        return f"<product {self.id, self.title}"
+        return f" {self.id, self.title}"
 
 
 
    
     
-class Type(db.Model):
-    __tablename__ = 'type'
-    name = db.Column(db.String(100), primary_key=True)
-
-
-    def __str__(self):
-        return self.name
-
-
-    def __iter__(self):
-        return iter(self.name)
-
-
-    def __repr__(self):
-        return f"<type> {self.name}"
