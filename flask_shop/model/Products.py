@@ -17,10 +17,10 @@ class Product(db.Model):
         return self.title
 
     def __iter__(self):
-        return iter(self.variants)
+        return iter(self.id)
     
     def __repr__(self):
-        return f"<users {self.id, self.name}"
+        return f"<product {self.id, self.title}"
 
 
 
@@ -29,3 +29,15 @@ class Product(db.Model):
 class Type(db.Model):
     __tablename__ = 'type'
     name = db.Column(db.String(100), primary_key=True)
+
+
+    def __str__(self):
+        return self.name
+
+
+    def __iter__(self):
+        return iter(self.name)
+
+
+    def __repr__(self):
+        return f"<type> {self.name}"
