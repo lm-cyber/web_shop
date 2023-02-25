@@ -2,7 +2,8 @@
 
 from flask_restful import Resource
 from flask_shop.model.db import db
-from .Products import Product
+from .Products import Product, Type
+
 from flask import request
 
 class Controler_Product(Resource):
@@ -18,12 +19,16 @@ class Controler_Product(Resource):
         return { "data": data }
     def post(self):
         try:
+            t = Type(name=request.form['type'])
+            db.session.add(t)
+            db.session.flush()
             p = Product(title=request.form['title'], description=request.form['description'], type=request.form['type'])
             db.session.add(p)
             db.session.flush()
             db.session.commit()
             return {"result": "ok"}
-        except :
+        except Exception as e:
+            print(e)
             db.session.rollback()
             return {"result": "problem",
                     "title" : request.form['title'],
