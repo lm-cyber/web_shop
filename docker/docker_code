@@ -5,6 +5,7 @@ sudo docker run -d -p 27017:27017 --name test_mongo mongo
 sudo docker run -d -p 27017:27017 --name test-mango \ 
         -e MONGO_INITDB_ROOT_USERNAME='admin' \   
         -e MONGO_INITDB_ROOT_PASSWORD='admin' \
+        -e MONGO_INITDB_DATABASE='test123' \
         mongo
 
 

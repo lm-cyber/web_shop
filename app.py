@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 from flask_shop.setup import app,api
 from flask_shop.model.Controler_Product import Controler_Product
+from flask_shop.model.Controler_Image import Controler_Image
 from flask_shop.model.db import db
 
 
 api.add_resource(Controler_Product, '/api/product')
+api.add_resource(Controler_Image, '/api/image')
 @app.route('/')
 def index():
     return '''
@@ -15,6 +17,13 @@ def index():
 
 <p><input type="submit" value="test" />
 </form>
+<h1> aaaaaaaaaaaaaaaa   </h1>
+   <form action = "/api/image" method = "POST"
+         enctype = "multipart/form-data">
+         <input type = "text" name = "name"/>
+         <input type = "file" name = "file" />
+         <input type = "submit"/>
+      </form>
     '''
 if __name__ == "__main__":
     with app.app_context():
