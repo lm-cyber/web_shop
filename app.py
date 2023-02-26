@@ -24,6 +24,11 @@ def index():
          <input type = "file" name = "file" />
          <input type = "submit"/>
       </form>
+      <h1> aaaaaaaaaaaaaaaa   </h1>
+        <form action = "/api/image" method = "PUT">
+                 <input type = "submit"/>
+
+        </form>
     '''
 if __name__ == "__main__":
     with app.app_context():

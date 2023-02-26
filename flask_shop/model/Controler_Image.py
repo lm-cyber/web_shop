@@ -20,4 +20,7 @@ class Controler_Image(Resource):
 
     def put(self):
         files = [fs.get_last_version(file) for file in fs.list()]
-        return {"data" :str(files) }
+        s=''
+        for i in files:
+            s+= str(i._id)
+        return {"data" :str(s) }
