@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
+import base64
+
+from flask import make_response
+from gridfs import GridFS
+
 from flask_shop.setup import app,api
 from flask_shop.model.Controler_Product import Controler_Product
 from flask_shop.model.Controler_Image import Controler_Image
-from flask_shop.model.db import db
-
+from flask_shop.model.db import db, mongo
 
 api.add_resource(Controler_Product, '/api/product')
 api.add_resource(Controler_Image, '/api/image')
@@ -30,6 +34,19 @@ def index():
 
         </form>
     '''
+
+@app.route('/images/')
+def get_image():
+    try:
+        storage = GridFS(mongo.db, 'fs')
+        fileobj = storage.get_version(filename='12312', version=-1)
+        response = make_response(fileobj.read())
+        response.headers.set('Content-Type', 'image/jpeg')
+        response.headers.set(
+            'Content-Disposition', 'attachment', filename='fon.jpg')
+        return response
+    except Exception as e:
+        return e.__str__();
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
