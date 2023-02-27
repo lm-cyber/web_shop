@@ -25,6 +25,7 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255), nullable=True)
     description = db.Column(db.Text())
+    image_name = db.Column(db.String(255),nullable=True)
     type = db.Column(db.String(100), db.ForeignKey("type.name"))
 
 

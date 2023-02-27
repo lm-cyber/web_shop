@@ -14,10 +14,12 @@ api.add_resource(Controler_Image, '/api/image')
 @app.route('/')
 def index():
     return '''
-    <form action="/api/product" method="post" class="form-contact">
+    <form action="/api/product" method="post" class="form-contact" enctype = "multipart/form-data">
 <p><label>title: </label> <input type="text" name="title" value="" requied />
 <p><label>description: </label> <input type="text" name="description" value="" requied />
 <p><label>type: </label> <input type="text" name="type" value="" requied />
+<p><label>image: </label> <input type="text" name="image_name" value="" requied />
+         <input type = "file" name = "file" />
 
 <p><input type="submit" value="test" />
 </form>

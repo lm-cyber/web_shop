@@ -22,9 +22,9 @@ class Controler_Image(Resource):
         except Exception as e:
             return {"result":e.__str__()}
 
-    def put(self):
-        files = [fs.get_last_version(file) for file in fs.list()]
-        s=''
-        for i in files:
-            s+= str(i._id)
-        return {"data" :str(s) }
+    # def put(self):
+    #     files = [fs.get_last_version(file) for file in fs.list()]
+    #     s=''
+    #     for i in files:
+    #         s+= str(i._id)
+    #     return {"data" :str(s) }
